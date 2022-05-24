@@ -140,7 +140,7 @@ namespace WebApiTestProject
         {
             await InitializeToken();
             List<Point> points = new List<Point>();
-            for(int i=3001;i<=3400;i++)
+            for(int i=100;i<=400;i++)
             {
                 points.Add(new Point() { X = i, Y = i });
                 points.Add(new Point() { X = -i, Y = i });
