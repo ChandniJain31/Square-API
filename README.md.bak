@@ -11,7 +11,7 @@ A point is a pair of integer X and Y coordinates. A square is a set of 4 points 
 
 
 
-### API Functionality
+### API Functinality
 
 * A user can import a list of points.
 * A user can add a point to an existing list.
