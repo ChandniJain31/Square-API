@@ -1,16 +1,16 @@
-﻿using BusinessLogic.Models;
+﻿using System.Drawing;
 
 namespace SquaresAPI.BusinessLogic
 {
     public class SquareModel
     {
-        public PointModel A { get; set; }
-        public PointModel B { get; set; }
-        public PointModel C { get; set; }
-        public PointModel D { get; set; }
+        public Point A { get; set; }
+        public Point B { get; set; }
+        public Point C { get; set; }
+        public Point D { get; set; }
 
         public SquareModel() { }
-        public SquareModel(PointModel A, PointModel B, PointModel C, PointModel D)
+        public SquareModel(Point A, Point B, Point C, Point D)
         {
             this.A = A;
             this.B = B;

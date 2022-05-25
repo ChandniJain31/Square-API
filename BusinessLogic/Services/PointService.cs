@@ -79,10 +79,10 @@ namespace SquaresAPI.Services
                         {
                             SquareModel newsq = new SquareModel()
                             {
-                                A = new PointModel(input[i].X, input[i].Y),
-                                B = new PointModel(vertices.Item2.X, vertices.Item2.Y),
-                                C = new PointModel(input[j].X, input[j].Y),
-                                D = new PointModel(vertices.Item3.X, vertices.Item3.Y)
+                                A = new Point(input[i].X, input[i].Y),
+                                B = new Point(vertices.Item2.X, vertices.Item2.Y),
+                                C = new Point(input[j].X, input[j].Y),
+                                D = new Point(vertices.Item3.X, vertices.Item3.Y)
                             };
                             if (!allsqaures.Contains(newsq)) // if that sqaure has not already been identified.
                             {

@@ -1,6 +1,7 @@
 ﻿using BusinessLogic.Models;
 using SquaresAPI.BusinessLogic;
 using Swashbuckle.AspNetCore.Filters;
+using System.Drawing;
 //using Swashbuckle.Examples;
 //using Swashbuckle.AspNetCore.Filters;
 using System.Net;
@@ -21,17 +22,17 @@ namespace SquaresAPI
         {
             SquareModel sq1 = new SquareModel()
             {
-                A = new PointModel(1, 1),
-                B = new PointModel(1, -1),
-                C = new PointModel(-1, 1),
-                D = new PointModel(-1, 1)
+                A = new Point(1, 1),
+                B = new Point(1, -1),
+                C = new Point(-1, 1),
+                D = new Point(-1, 1)
             };
             SquareModel sq2 = new SquareModel()
             {
-                A = new PointModel(1, 3),
-                B = new PointModel(3, 3),
-                C = new PointModel(3, 1),
-                D = new PointModel(1, 1)
+                A = new Point(1, 3),
+                B = new Point(3, 3),
+                C = new Point(3, 1),
+                D = new Point(1, 1)
             };
             var data = new HashSet<SquareModel>();
             data.Add(sq1);
@@ -39,7 +40,6 @@ namespace SquaresAPI
             return new SquareResponse() { count = 2, data = data };
         }
     }
-
 
     public class BadRequestExample : IExamplesProvider<BadRequestError>
     {

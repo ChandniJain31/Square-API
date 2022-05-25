@@ -1,3 +1,4 @@
+using BusinessLogic.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -6,7 +7,6 @@ using SquaresAPI.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -72,7 +72,7 @@ namespace WebApiTestProject
         public async Task TestAddPoint()
         {
             await InitializeToken();
-            var point = new Point(-19200, 19200 );
+            var point = new PointModel(-19200, 19200 );
             var data = new StringContent(JsonConvert.SerializeObject(point), Encoding.UTF8, "application/json");
             httpclient.DefaultRequestHeaders.Accept.Clear();
             httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -84,15 +84,15 @@ namespace WebApiTestProject
         public async Task TestAddList()
         {
             await InitializeToken();
-            var point = new Point[] {
-                new Point(){ X = 1, Y = 1 },
-                new Point(){ X = 1, Y = -1 },
-                new Point(){ X = -1, Y = -1 },
-                new Point(){ X = -1, Y = 1 },
-                new Point(){ X = 1, Y = 3 },
-                new Point(){ X = 3, Y = 3 },
-                new Point(){ X = 3, Y = 1 },
-                new Point(){ X = 10, Y = 10 },
+            var point = new PointModel[] {
+                new PointModel(){ X = 1, Y = 1 },
+                new PointModel(){ X = 1, Y = -1 },
+                new PointModel(){ X = -1, Y = -1 },
+                new PointModel(){ X = -1, Y = 1 },
+                new PointModel(){ X = 1, Y = 3 },
+                new PointModel(){ X = 3, Y = 3 },
+                new PointModel(){ X = 3, Y = 1 },
+                new PointModel(){ X = 10, Y = 10 },
             };
             var data = new StringContent(JsonConvert.SerializeObject(point), Encoding.UTF8, "application/json");
             httpclient.DefaultRequestHeaders.Accept.Clear();
@@ -106,7 +106,7 @@ namespace WebApiTestProject
         public async Task TestDeletePoint()
         {
             await InitializeToken();
-            var point = new Point(){ X = -19200, Y = 19200 };
+            var point = new PointModel(){ X = -19200, Y = 19200 };
             var data = new StringContent(JsonConvert.SerializeObject(point), Encoding.UTF8, "application/json");
             httpclient.DefaultRequestHeaders.Accept.Clear();
             httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -135,28 +135,28 @@ namespace WebApiTestProject
             }
         }
 
-        [TestMethod]
-        public async Task TestImportList()
-        {
-            await InitializeToken();
-            List<Point> points = new List<Point>();
-            for(int i=100;i<=400;i++)
-            {
-                points.Add(new Point() { X = i, Y = i });
-                points.Add(new Point() { X = -i, Y = i });
-                points.Add(new Point() { X = i, Y = -i });
-                points.Add(new Point() { X = -i, Y = -i });
-            }          
-            var data = new StringContent(JsonConvert.SerializeObject(points), Encoding.UTF8, "application/json");
-            httpclient.DefaultRequestHeaders.Accept.Clear();
-            httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.token);
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-            var response = await httpclient.PostAsync("Point/Import", data);
-            sw.Stop();
-            Console.WriteLine($"total seconds in getting response:{sw.Elapsed.TotalSeconds}");
-            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-        }
+        //[TestMethod]
+        //public async Task TestImportList()
+        //{
+        //    await InitializeToken();
+        //    List<PointModel> points = new List<PointModel>();
+        //    for(int i=100;i<=400;i++)
+        //    {
+        //        points.Add(new PointModel() { X = i, Y = i });
+        //        points.Add(new PointModel() { X = -i, Y = i });
+        //        points.Add(new PointModel() { X = i, Y = -i });
+        //        points.Add(new PointModel() { X = -i, Y = -i });
+        //    }          
+        //    var data = new StringContent(JsonConvert.SerializeObject(points), Encoding.UTF8, "application/json");
+        //    httpclient.DefaultRequestHeaders.Accept.Clear();
+        //    httpclient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //    httpclient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token.token);
+        //    Stopwatch sw = new Stopwatch();
+        //    sw.Start();
+        //    var response = await httpclient.PostAsync("Point/Import", data);
+        //    sw.Stop();
+        //    Console.WriteLine($"total seconds in getting response:{sw.Elapsed.TotalSeconds}");
+        //    Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        //}
     }
 }
