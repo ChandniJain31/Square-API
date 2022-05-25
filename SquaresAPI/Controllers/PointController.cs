@@ -4,6 +4,9 @@ using SquaresAPI.Services;
 using SquaresAPI.BusinessLogic;
 using System.Drawing;
 using SquaresAPI.Filters;
+using BusinessLogic.Models;
+using System.Web.Http.ModelBinding;
+using System.Net;
 
 namespace SquaresAPI.Controllers
 {
@@ -21,37 +24,45 @@ namespace SquaresAPI.Controllers
         }
 
         [Route("/GetSquares")]
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet]       
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedError))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type =typeof(NotFoundError))]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SquareResponse))]
         public async Task<IActionResult> GetSquaresAsync()
         {
             var squares = await pointService.GetSquaresAsync(User.GetLoggedInUserId<int>());
-            return (squares == null || squares.Count == 0) ? NotFound("No squares can be generated!"):Ok(new SquareResponse(){ count = squares.Count, data = squares });
+            if (squares == null || squares.Count == 0)
+            {
+                return NotFound(new NotFoundError("No squares can be generated."));
+            }
+            return Ok(new SquareResponse(){ count = squares.Count, data = squares });
         }
 
         [HttpPost]
         [Route("/Point/Add")]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedError))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest,Type = typeof(BadRequestError))]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> AddAsync([FromBody] Point point)
+        public async Task<IActionResult> AddAsync([FromBody] PointModel point)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var msg = await pointService.AddPointAsync(point,User.GetLoggedInUserId<int>());
-            return string.IsNullOrEmpty(msg) ? Created(String.Empty, null) : BadRequest(msg);
+            var issuccess = await pointService.AddPointAsync(point,User.GetLoggedInUserId<int>());
+            if (!issuccess)
+            {
+                return BadRequest(new BadRequestError("Point already exists."));
+            }
+            return Created(string.Empty, null);
         }
 
         [HttpPost]
         [Route("/Point/Import")]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedError))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<IActionResult> ImportAsync([FromBody] Point[] points)
+        public async Task<IActionResult> ImportAsync([FromBody] PointModel[] points)
         {
             if (!ModelState.IsValid)
             {
@@ -63,10 +74,10 @@ namespace SquaresAPI.Controllers
 
         [HttpPost]
         [Route("/Point/Delete")]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedError))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        public async Task<IActionResult> DeleteAsync([FromBody]Point point)
+        public async Task<IActionResult> DeleteAsync([FromBody] PointModel point)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

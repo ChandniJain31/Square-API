@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Services;
+﻿using BusinessLogic.Models;
+using BusinessLogic.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SquaresAPI.BusinessLogic;
@@ -21,24 +22,26 @@ namespace SquaresAPI.Controllers
         [AllowAnonymous]
         [HttpPost("~/token")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type = typeof(UnauthorizedError))]
         public async Task<IActionResult> Authenticate(AuthenticateRequest model)
         {
             var response = await _userService.AuthenticateAsync(model);
-            if(response==null)
-            { return Unauthorized(); }
+            if (response == null)
+            {
+                return Unauthorized(new UnauthorizedError("Authorization information is missing or invalid."));
+            }
              return Ok(response);
         }
 
         [AllowAnonymous]
         [HttpPost("~/refreshtoken")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized, Type =typeof(UnauthorizedError))]
         public async Task<IActionResult> RefreshToken([FromBody]TokenResponse token)
         {
             var response =await _userService.RefreshToken(token);
             if (response == null)
-            { return Unauthorized(); }
+            { return Unauthorized( new UnauthorizedError("Authorization information is missing or invalid.")); }
             return Ok(response);
         }      
     }

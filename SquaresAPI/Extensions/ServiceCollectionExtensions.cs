@@ -8,6 +8,7 @@ using SquaresAPI.BusinessLogic;
 using SquaresAPI.DataAcccessLayer.Repository;
 using SquaresAPI.Filters;
 using SquaresAPI.Services;
+using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 
 namespace SquaresAPI
@@ -19,13 +20,17 @@ namespace SquaresAPI
             services.AddCors();
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddEndpointsApiExplorer();
+
+            #region Swagger Configuration
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "SquareAPI",
-                    Version = "v1"
+                    Version = "v1",
+
                 });
+                c.ExampleFilters();
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -47,6 +52,14 @@ namespace SquaresAPI
                     }
                 });
             });
+            services.AddSwaggerExamplesFromAssemblyOf<SquareResponseExample>();
+            services.AddSwaggerExamplesFromAssemblyOf<PointExample>();
+            services.AddSwaggerExamplesFromAssemblyOf<BadRequestExample>();
+            services.AddSwaggerExamplesFromAssemblyOf<NotFoundExample>();
+            services.AddSwaggerExamplesFromAssemblyOf<UnAuthorizedExample>();
+            #endregion
+
+            #region JWT Configuration
             services.Configure<JwtSettings>(configuration.GetSection("AppSettings"));
             services.AddAuthentication(x =>
             {
@@ -77,6 +90,8 @@ namespace SquaresAPI
                     }
                 };
             } );
+            #endregion
+
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IPointService, PointService>();
             services.AddTransient<LogAttribute>();

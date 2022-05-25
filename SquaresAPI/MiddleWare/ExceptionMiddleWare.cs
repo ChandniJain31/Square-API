@@ -1,11 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using SquaresAPI.BusinessLogic.Helpers;
 using System.Net;
 
 namespace SquaresAPI.MiddleWare
 {
- 
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
@@ -35,9 +33,6 @@ namespace SquaresAPI.MiddleWare
             switch(type.Name)
             {
                 case nameof(SecurityTokenException): 
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
-                case nameof(AppException):
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
                     break;
                 case nameof(KeyNotFoundException):

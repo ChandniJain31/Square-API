@@ -1,4 +1,5 @@
-﻿using SquaresAPI.BusinessLogic;
+﻿using BusinessLogic.Models;
+using SquaresAPI.BusinessLogic;
 using SquaresAPI.BusinessLogic.Helper;
 using SquaresAPI.DataAcccessLayer.Repository;
 using SquaresAPI.DataAcccessLayer.Repository.Models;
@@ -16,20 +17,20 @@ namespace SquaresAPI.Services
 
         #region Public Methods
 
-        public async Task<string> AddPointAsync(Point point, int UserId)
+        public async Task<bool> AddPointAsync(PointModel point, int UserId)
         {
             Points pt = new Points() { X = point.X, Y = point.Y,UserId=UserId ,TimeStamp=DateTime.Now};
             var entity = await repository.AddAsync(pt);
-            return entity!=null? string.Empty:"Point already exists.";
+            return entity != null ? true : false;
         }
 
-        public async Task DeletePointAsync(Point point, int UserId)
+        public async Task DeletePointAsync(PointModel point, int UserId)
         {
             Points pt = new Points() { X = point.X, Y = point.Y ,UserId=UserId};
             await repository.DeleteAsync(pt);            
         }
 
-        public async Task ImportPointsAsync(Point[] points, int UserId)
+        public async Task ImportPointsAsync(PointModel[] points, int UserId)
         {
             Points[] pointEntity = new Points[points.Length];
             for (int i = 0; i < points.Length; i++)
@@ -76,7 +77,13 @@ namespace SquaresAPI.Services
                     {
                         if (set.Contains(vertices.Item2) && set.Contains(vertices.Item3))// if other two vertices are in give set of points
                         {
-                            SquareModel newsq = new SquareModel(input[i], vertices.Item2,input[j], vertices.Item3);
+                            SquareModel newsq = new SquareModel()
+                            {
+                                A = new PointModel(input[i].X, input[i].Y),
+                                B = new PointModel(vertices.Item2.X, vertices.Item2.Y),
+                                C = new PointModel(input[j].X, input[j].Y),
+                                D = new PointModel(vertices.Item3.X, vertices.Item3.Y)
+                            };
                             if (!allsqaures.Contains(newsq)) // if that sqaure has not already been identified.
                             {
                                 allsqaures.Add(newsq);
