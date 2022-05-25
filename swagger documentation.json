@@ -16,17 +16,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               }
             }
@@ -36,17 +51,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/NotFoundError"
+                },
+                "example": {
+                  "statuscode": 404,
+                  "title": "NotFound",
+                  "errormessage": "No squares can be generated."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/NotFoundError"
+                },
+                "example": {
+                  "statuscode": 404,
+                  "title": "NotFound",
+                  "errormessage": "No squares can be generated."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/NotFoundError"
+                },
+                "example": {
+                  "statuscode": 404,
+                  "title": "NotFound",
+                  "errormessage": "No squares can be generated."
                 }
               }
             }
@@ -57,16 +87,67 @@
               "text/plain": {
                 "schema": {
                   "$ref": "#/components/schemas/SquareResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "a": "1, 1",
+                      "b": "1, -1",
+                      "c": "-1, 1",
+                      "d": "-1, 1"
+                    },
+                    {
+                      "a": "1, 3",
+                      "b": "3, 3",
+                      "c": "3, 1",
+                      "d": "1, 1"
+                    }
+                  ],
+                  "count": 2
                 }
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SquareResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "a": "1, 1",
+                      "b": "1, -1",
+                      "c": "-1, 1",
+                      "d": "-1, 1"
+                    },
+                    {
+                      "a": "1, 3",
+                      "b": "3, 3",
+                      "c": "3, 1",
+                      "d": "1, 1"
+                    }
+                  ],
+                  "count": 2
                 }
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SquareResponse"
+                },
+                "example": {
+                  "data": [
+                    {
+                      "a": "1, 1",
+                      "b": "1, -1",
+                      "c": "-1, 1",
+                      "d": "-1, 1"
+                    },
+                    {
+                      "a": "1, 3",
+                      "b": "3, 3",
+                      "c": "3, 1",
+                      "d": "1, 1"
+                    }
+                  ],
+                  "count": 2
                 }
               }
             }
@@ -83,22 +164,38 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             }
           }
@@ -109,17 +206,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               }
             }
@@ -129,17 +241,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/BadRequestError"
+                },
+                "example": {
+                  "statuscode": 400,
+                  "title": "BadRequest",
+                  "errormessage": "Point already exists."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/BadRequestError"
+                },
+                "example": {
+                  "statuscode": 400,
+                  "title": "BadRequest",
+                  "errormessage": "Point already exists."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/BadRequestError"
+                },
+                "example": {
+                  "statuscode": 400,
+                  "title": "BadRequest",
+                  "errormessage": "Point already exists."
                 }
               }
             }
@@ -161,7 +288,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Point"
+                  "$ref": "#/components/schemas/PointModel"
                 }
               }
             },
@@ -169,7 +296,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Point"
+                  "$ref": "#/components/schemas/PointModel"
                 }
               }
             },
@@ -177,7 +304,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Point"
+                  "$ref": "#/components/schemas/PointModel"
                 }
               }
             },
@@ -185,7 +312,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Point"
+                  "$ref": "#/components/schemas/PointModel"
                 }
               }
             }
@@ -197,17 +324,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               }
             }
@@ -247,22 +389,38 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Point"
+                "$ref": "#/components/schemas/PointModel"
+              },
+              "example": {
+                "x": 1,
+                "y": -1
               }
             }
           }
@@ -273,17 +431,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               }
             }
@@ -352,17 +525,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               }
             }
@@ -408,17 +596,32 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                },
+                "example": {
+                  "statuscode": 401,
+                  "title": "Unauthorized",
+                  "errormessage": "Authorization information is missing or invalid."
                 }
               }
             }
@@ -445,6 +648,42 @@
         },
         "additionalProperties": false
       },
+      "BadRequestError": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "errormessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "errormessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "Point": {
         "type": "object",
         "properties": {
@@ -452,6 +691,20 @@
             "type": "boolean",
             "readOnly": true
           },
+          "x": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PointModel": {
+        "type": "object",
+        "properties": {
           "x": {
             "type": "integer",
             "format": "int32"
@@ -488,7 +741,7 @@
             "nullable": true
           }
         },
-        "additionalProperties": { }
+        "additionalProperties": {}
       },
       "SquareModel": {
         "type": "object",
@@ -547,6 +800,24 @@
           }
         },
         "additionalProperties": false
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "statuscode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "errormessage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
@@ -560,7 +831,7 @@
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": []
     }
   ]
 }
